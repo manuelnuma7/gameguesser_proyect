@@ -21,7 +21,10 @@
     <div class="error" *ngIf="fallo">
       Nombre de usuario o contraseña no válidos
       </div>
-      <p #welcomeMessageElement id="welcomeMessage"></p>
+     
+        <p #welcomeMessageElement id="welcomeMessage"></p>
+        <a *ngIf="checkadmin()" routerLink="/admin" class="btn btn-primary">ADMINISTRAR</a>
+    
   </div>
 </div>
 

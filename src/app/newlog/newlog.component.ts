@@ -17,7 +17,7 @@ export class NewlogComponent {
     nombre: '',
     email: '',
     clave: '',
-    admin: 0,
+    admin: '0',
   };
   newusuarioForm!: FormGroup;
   public message: string = '';

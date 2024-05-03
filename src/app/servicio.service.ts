@@ -38,6 +38,31 @@ export class ServicioService {
     return this.http.get<Ranking[]>(`${this.url}ranking/leerRanking.php`);
   }
 
+
+
+
+
+  agregarJuego(juego: Juego): Observable<Juego> {
+    return this.http.post<Juego>(`${this.url}juego/agregarJuego.php`, juego);
+  }
+
+  modificarJuego(juego: Juego): Observable<any> {
+    return this.http.put(`${this.url}juego/modificarJuego.php`, juego);
+  }
+
+  eliminarJuego(id: number): Observable<any> {
+    return this.http.delete(`${this.url}juego/eliminarJuego.php?id=${id}`);
+  }
+
+  
+  modificarUsuario(usuario: Usuario): Observable<any> {
+    return this.http.put(`${this.url}usuario/modificarUsuario.php`, usuario);
+  }
+
+  eliminarUsuario(id: number): Observable<any> {
+    return this.http.delete(`${this.url}usuario/eliminarUsuario.php?id=${id}`);
+  }
+
 }
 
 

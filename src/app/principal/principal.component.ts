@@ -15,16 +15,21 @@ export class PrincipalComponent implements AfterViewInit {
   newlogin!: Usuario;
   isLoggedIn = false;
   entrada:boolean=false;
+  bienvenida:string="";
+
   @ViewChild('welcomeMessageElement', { static: true }) welcomeMessageElement!: ElementRef;
   
   fallo:boolean=false;
   aceptarCookies = false;
+ 
 
   constructor(
     private servicioService: ServicioService,
     private fb: FormBuilder,
     private router: Router,
     private CookieService: CookieService,
+    
+    
   ) {
     this.newloginForm = this.fb.group({
     nombre: ['', [Validators.required]],
@@ -43,7 +48,7 @@ export class PrincipalComponent implements AfterViewInit {
     if (sessionCookieExists) {
       const valorCookie = this.CookieService.get('session');
       if (this.welcomeMessageElement) { // Verificar si welcomeMessageElement está definido
-        this.welcomeMessageElement.nativeElement.textContent = `Bienvenido ${valorCookie}`;
+        this.bienvenida = this.welcomeMessageElement.nativeElement.textContent = `Bienvenido ${valorCookie}`;
       }
       this.isLoggedIn = true;
     }
@@ -51,6 +56,7 @@ export class PrincipalComponent implements AfterViewInit {
     if (politicaCookieExists) {
       this.aceptarCookies = true;
     }
+    
   }
   entradalogin() {
     this.newlogin = this.newloginForm.value;
@@ -60,9 +66,11 @@ export class PrincipalComponent implements AfterViewInit {
         const currentDate = new Date();
         const expirationDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
         this.CookieService.set('session', data[0].nombre,expirationDate);
-        // this.welcomeMessageElement.nativeElement.textContent = `Bienvenido ${this.nombre}`;
+       //  this.welcomeMessageElement.nativeElement.textContent = `Bienvenido ${this.nombre}`;
+       this.CookieService.set('admin', data[0].admin,expirationDate);
         this.isLoggedIn = true;
          this.router.navigateByUrl('jugar');
+         
       }
       else {this.fallo=true;}
     });
@@ -83,6 +91,20 @@ export class PrincipalComponent implements AfterViewInit {
     const sessionCookie = document.cookie.includes('Politica');
     return sessionCookie;
   }
+
+  checkadmin(){
+    const valorCookie = this.CookieService.get('admin');
+    if(valorCookie=='1'){
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+
+ 
+   
+  
   
   
 

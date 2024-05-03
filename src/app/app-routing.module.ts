@@ -6,7 +6,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { NewlogComponent } from './newlog/newlog.component';
 import { JuegoimagenComponent } from './juegoimagen/juegoimagen.component';
-
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioComponent },
@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'principal', component: PrincipalComponent },
   { path: 'newlog', component: NewlogComponent },
   { path: 'imagesgame', component: JuegoimagenComponent },
+  { path: 'admin', component: AdminComponent},
 
   { path: "", pathMatch: 'prefix', redirectTo: 'principal' },
   { path: '**', redirectTo: 'principal'}

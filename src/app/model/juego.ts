@@ -8,6 +8,6 @@ export interface Juego {
     nivel:       number;
     generos:     string[];
     plataformas: string[];
-    musica:      Array<null | string>;
-    imagenes:    Array<null | string>;
+    musica:      Array<null | string>;  //3 huecos 
+    imagenes:    Array<null | string>;  //5 huecos
 }

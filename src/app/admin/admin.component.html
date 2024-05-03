@@ -7,7 +7,7 @@
       <th>admin</th>
     </thead>
     <tbody>
-      <tr *ngFor="let uno of datos">
+      <tr *ngFor="let uno of usuarios">
         <td>{{ uno.id }}</td>
         <td>{{ uno.nombre }}</td>
         <td>{{ uno.email }}</td>
@@ -16,3 +16,37 @@
       </tr>
     </tbody>
   </table>
+
+
+  <table class="table table-success table-striped table-hover">
+    <thead>
+      <th>id</th>
+      <th>Nombre</th>
+      <th>fecha</th>
+      <th>nota</th>
+      <th>companion</th>
+      <th>nivel</th>
+      <th>generos</th>
+      <th>plataformas</th>
+      <th>musica</th>
+      <th>imagenes</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let uno of juegos">
+        <td>{{ uno.id }}</td>
+        <td>{{ uno.nombre }}</td>
+        <td>{{ uno.fecha }}</td>
+        <td>{{ uno.nota }}</td>
+        <td>{{ uno.companion }}</td>
+        <td>{{ uno.nivel }}</td>
+        <td>{{ uno.generos }}</td>
+        <td>{{ uno.plataformas }}</td>
+        <td>{{ uno.musica }}</td>
+        <td>{{ uno.imagenes }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+
+
