@@ -1,0 +1,75 @@
+/* botones */
+.admin-button {
+    margin: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-button:hover {
+    background-color: #0056b3;  /* Oscurece el botón al pasar el ratón por encima */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .admin-button:active {
+    background-color: #004085;  /* Hace el botón aún más oscuro cuando se hace clic */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px);
+  }
+
+  /* tabla de juegos */
+
+  /* Estilos para la tabla */
+.table-juegos th, .table-juegos td {
+    vertical-align: middle; /* Alinea el contenido de las celdas verticalmente al centro */
+  }
+  
+  
+  
+  .table-juegos img {
+    width: 100%; /* Asegura que las imágenes ocupen todo el ancho de la celda */
+    height: auto; /* Mantiene la proporción de las imágenes */
+    max-height: 75px; /* Limita la altura máxima de las imágenes */
+  }
+  
+  .table-juegos thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa; /* Color de fondo para asegurar que el texto no sea transparente */
+    z-index: 1020; /* Asegura que el encabezado esté por encima del contenido de la tabla */
+  }
+
+
+
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030; /* Asegurar que está por encima de otros elementos */
+    background-color: white; /* Fondo para mejorar legibilidad */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra para efecto de profundidad */
+  }
+  
+  .content {
+    padding-top: 180px; /* Ajusta según la altura del .fixed-header */
+  }
+
+
+  .back-to-main-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 123, 255, 0.5); /* Color azul con transparencia */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none; /* Eliminar subrayado de enlaces */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Animación suave del fondo */
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra ligera para más visibilidad */
+  }
+  
+  .back-to-main-btn:hover {
+    background-color: rgba(0, 123, 255, 0.8); /* Menos transparencia al pasar el ratón */
+  }

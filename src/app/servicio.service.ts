@@ -43,18 +43,22 @@ export class ServicioService {
 
 
   agregarJuego(juego: Juego): Observable<Juego> {
-    return this.http.post<Juego>(`${this.url}juego/agregarJuego.php`, juego);
+    return this.http.post<Juego>(`${this.url}juego/insertarJuego.php`, juego);
   }
 
-  modificarJuego(juego: Juego): Observable<any> {
-    return this.http.put(`${this.url}juego/modificarJuego.php`, juego);
+  // modificarJuego(juego: Juego): Observable<any> {
+  //   return this.http.put(`${this.url}juego/modificarJuego.php`, juego);
+  // }
+
+  // eliminarJuego(id: number): Observable<any> {
+  //   return this.http.delete(`${this.url}juego/eliminarJuego.php?id=${id}`);
+  // }
+
+
+  getUsuarioById(id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.url}usuario/getUsuarioById.php?id=${id}`);
   }
 
-  eliminarJuego(id: number): Observable<any> {
-    return this.http.delete(`${this.url}juego/eliminarJuego.php?id=${id}`);
-  }
-
-  
   modificarUsuario(usuario: Usuario): Observable<any> {
     return this.http.put(`${this.url}usuario/modificarUsuario.php`, usuario);
   }
