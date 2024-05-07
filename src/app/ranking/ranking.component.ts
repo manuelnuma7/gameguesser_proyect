@@ -18,17 +18,21 @@ export class RankingComponent implements OnInit {
   
   constructor(private servicioService: ServicioService) {
 
-    servicioService.getDatosRanking().subscribe(datos => {
-      this.datos = datos;
-      
-    });  }
+     }
     ngOnInit() {
       google.charts.load('current', { 'packages': ['corechart'] });
       google.charts.setOnLoadCallback(() => {
         this.googleChartsLoaded = true;
       });
+      this.getranking();
     }
-  
+
+    getranking() {
+      this.servicioService.getDatosRanking().subscribe(datos => {
+        this.datos = datos;
+      });
+      
+    }
   guardarRanking() {
     const doc = new jsPDF();
   
@@ -86,4 +90,10 @@ export class RankingComponent implements OnInit {
   cerrarGrafica() {
     this.mostrarGrafica = false;
   }
+
+   reiniciarPagina() {
+    // Utiliza JavaScript para recargar la página
+    location.reload();
+}
+
 }

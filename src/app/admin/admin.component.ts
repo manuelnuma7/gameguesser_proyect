@@ -16,6 +16,8 @@ export class AdminComponent implements OnInit{
   juegos: Juego[] = [];
   activeSection: string = '';
   juegoForm!: FormGroup;
+  generosDisponibles: string[] = [];
+  plataformasDisponibles: string[] = [];
   usuarioForm = new FormGroup({
     id: new FormControl(),
     nombre: new FormControl(''),
@@ -43,10 +45,18 @@ export class AdminComponent implements OnInit{
       nota: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
       companion: ['', Validators.required],
       nivel: ['', Validators.required],
-      generos: this.fb.array([], Validators.required),
-      plataformas: this.fb.array([], Validators.required),
+      generos: this.fb.array([]),
+      plataformas: this.fb.array([]),
       imagenes: this.fb.array([]),
       musica: this.fb.array([])
+    });
+
+    this.servicioService.getGeneros().subscribe((generos: string[]) => {
+      this.generosDisponibles = generos;
+    });
+
+    this.servicioService.getPlataformas().subscribe((plataformas: string[]) => {
+      this.plataformasDisponibles = plataformas;
     });
     
   }
@@ -180,13 +190,24 @@ export class AdminComponent implements OnInit{
 
   onSubmit() {
     if (this.juegoForm.valid) {
-      this.servicioService.agregarJuego(this.juegoForm.value).subscribe(response => {
-        console.log('Juego agregado', response);
-      }, error => {
-        console.error('Error al agregar juego', error);
+      this.servicioService.agregarJuego(this.juegoForm.value).subscribe({
+        next: (response: any) => {
+          if (response.success) {
+            alert('¡El juego fue insertado con éxito!');
+            this.juegoForm.reset(); // Restablecer el formulario después de la inserción exitosa
+          } else if (response.error) {
+            alert(`Error: ${response.error}`);
+          }
+        },
+        error: (err) => {
+          alert(`Error en la comunicación con el servidor: ${err.message}`);
+        }
       });
     } else {
-      alert('Algunos campos son inválidos o faltan. Por favor, revise el formulario.');
+      alert('Por favor, completa todos los campos requeridos.');
     }
+  }
+  resetForm() {
+    this.juegoForm.reset();
   }
 }

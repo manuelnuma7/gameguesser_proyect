@@ -98,10 +98,12 @@ this.servicioService.postDatoRanking(nuevo).subscribe((datos) => {
   console.log("Datos enviados al servidor:", datos);
 });
 
-
+      
       this.router.navigate(['/ranking']);
+      
       return;
     }
+    
     const longitudArray = this.nombresJuegos.length;
     const numeroAleatorio = this.generarNumeroAleatorio(longitudArray);
     this.numeroAleatorio = numeroAleatorio;

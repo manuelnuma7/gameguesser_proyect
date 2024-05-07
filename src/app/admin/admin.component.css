@@ -73,3 +73,7 @@
   .back-to-main-btn:hover {
     background-color: rgba(0, 123, 255, 0.8); /* Menos transparencia al pasar el ratón */
   }
+
+  .form-container {
+    margin-bottom: 50px; /* Ajusta el valor según lo que necesites */
+  }

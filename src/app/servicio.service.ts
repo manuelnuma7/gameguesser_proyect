@@ -67,6 +67,17 @@ export class ServicioService {
     return this.http.delete(`${this.url}usuario/eliminarUsuario.php?id=${id}`);
   }
 
+   // Método para obtener géneros desde la base de datos
+   getGeneros(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.url}juego/obtenerGeneros.php`);
+  }
+
+  // Método para obtener plataformas desde la base de datos
+  getPlataformas(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.url}juego/obtenerPlataformas.php`);
+  }
+
+
 }
 
 

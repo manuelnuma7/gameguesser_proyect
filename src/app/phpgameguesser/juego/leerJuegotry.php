@@ -62,9 +62,11 @@ try {
                 $juegos[$idJuego]['imagenes'][] = $row['imagen'];
             }
         }
+        $juegos = array_values($juegos);
 
         header('Content-type: application/json');
         echo json_encode($juegos);
+        
     }
 } catch (PDOException $e) {
     echo json_encode(array(

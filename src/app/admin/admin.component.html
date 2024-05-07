@@ -93,7 +93,7 @@
 </div>
 
 <div *ngIf="activeSection === 'agregarJuego'">
-  <form [formGroup]="juegoForm" (ngSubmit)="onSubmit()">
+  <form class="form-container" [formGroup]="juegoForm" (ngSubmit)="onSubmit()">
     <input formControlName="nombre" placeholder="Nombre del juego" type="text">
     <input formControlName="fecha" placeholder="Año del juego" type="number">
     <input formControlName="nota" placeholder="Nota del juego" type="number">
@@ -104,19 +104,25 @@
       <option value="3">Difícil</option>
     </select>
   
-    <div formArrayName="generos">
-      <button type="button" (click)="agregarGenero()">Agregar Género</button>
-      <div *ngFor="let genero of generos.controls; let i = index">
-        <input [formControlName]="i" placeholder="Género">
-      </div>
+     <!-- Géneros -->
+  <div formArrayName="generos">
+    <button type="button" (click)="agregarGenero()" [disabled]="generos.length >= 3">Agregar Género</button>
+    <div *ngFor="let genero of generos.controls; let i = index">
+      <select [formControlName]="i">
+        <option *ngFor="let g of generosDisponibles" [value]="g">{{ g }}</option>
+      </select>
     </div>
-  
-    <div formArrayName="plataformas">
-      <button type="button" (click)="agregarPlataforma()">Agregar Plataforma</button>
-      <div *ngFor="let plataforma of plataformas.controls; let i = index">
-        <input [formControlName]="i" placeholder="Plataforma">
-      </div>
+  </div>
+
+  <!-- Plataformas -->
+  <div formArrayName="plataformas">
+    <button type="button" (click)="agregarPlataforma()" [disabled]="plataformas.length >= 3">Agregar Plataforma</button>
+    <div *ngFor="let plataforma of plataformas.controls; let i = index">
+      <select [formControlName]="i">
+        <option *ngFor="let p of plataformasDisponibles" [value]="p">{{ p }}</option>
+      </select>
     </div>
+  </div>
   
     <div formArrayName="imagenes">
       <button type="button" (click)="agregarImagen()">Agregar Imagen</button>
@@ -133,6 +139,7 @@
     </div>
   
     <button type="submit">Agregar Juego</button>
+    <button type="button" (click)="resetForm()">Limpiar Formulario</button>
   </form>
 </div>
 
