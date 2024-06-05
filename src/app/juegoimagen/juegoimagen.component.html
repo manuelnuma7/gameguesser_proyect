@@ -1,6 +1,12 @@
 <div class="container">
   <h1 class="text-center">{{ titulo }}</h1>
-  <div class="puntuacion text-center">PUNTOS: {{ puntos }}</div>
+  <div class="puntuacion text-center">
+    PUNTOS: <span>{{ puntos }}</span>
+    <span class="point-increase" *ngIf="puntosGanados > 0">+{{ puntosGanados }}</span>
+  </div>
+  <div class="vidas text-center mt-3">
+    <img *ngFor="let vida of vidasImagenes" [src]="vida" class="vida-imagen">
+  </div>
   <div class="row justify-content-center">
     <div class="col-6">
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -49,7 +55,7 @@
   </div>
   <div class="row mt-5">
     <div class="col text-center">
-      <p *ngIf="mensajePerderVida">{{ mensajePerderVida }}</p>
+      <p *ngIf="mensajePerderVida" class="mensaje-incorrecto">{{ mensajePerderVida }}</p>
     </div>
   </div>
   <div class="row mt-5">
@@ -57,14 +63,12 @@
       <p *ngIf="mensajeResultado">{{ mensajeResultado }}</p>
     </div>
   </div>
-  <div class="row mt-5">
-    <div class="col text-center">
-      <p *ngIf="mensajePerder">{{ mensajePerder }}</p>
-    </div>
-  </div>
-  <div class="row mt-5">
-    <div class="col text-center">
-      <p *ngIf="mensajeganar">{{ mensajeganar }}</p>
+  <div class="mensaje-perdida" *ngIf="mensajePerder">
+    <p>{{ mensajePerder }}</p>
+    <div>
+      <button class="btn btn-primary" (click)="reiniciar()">Jugar de nuevo</button>
+      <button class="btn btn-primary" routerLink="/principal">Ir a página principal</button>
+      <button class="btn btn-primary" routerLink="/ranking">Ir al ranking</button>
     </div>
   </div>
 </div>
