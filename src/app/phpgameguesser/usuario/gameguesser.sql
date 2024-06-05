@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-03-2024 a las 18:27:07
+-- Tiempo de generación: 19-05-2024 a las 08:52:36
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -45,7 +45,8 @@ INSERT INTO `biblioteca_juego` (`id_biblioteca_juego`, `nombre`, `fecha`, `nota`
 (2, 'The Legend of Zelda: Breath of the Wild', 2017, 97, 'Nintendo', 1),
 (3, 'Minecraft', 2011, 93, 'Mojang Studios', 1),
 (4, 'League of Legends', 2009, 78, 'Riot Games', 1),
-(5, 'Grand Theft Auto V', 2013, 97, 'Rockstar Games', 1);
+(5, 'Grand Theft Auto V', 2013, 97, 'Rockstar Games', 1),
+(6, 'Red Dead Redemption 2', 2018, 97, 'Rockstar Games', 1);
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,8 @@ INSERT INTO `genero` (`id_genero`, `genero`) VALUES
 (10, 'MOBA'),
 (11, 'RTS'),
 (12, 'deporte electronico'),
-(13, 'crimen y delincuencia');
+(13, 'crimen y delincuencia'),
+(14, 'Western');
 
 -- --------------------------------------------------------
 
@@ -99,15 +101,18 @@ INSERT INTO `genero_juego` (`id_genero`, `id_biblioteca_juego`) VALUES
 (4, 2),
 (4, 5),
 (5, 2),
+(5, 6),
 (6, 2),
 (6, 5),
+(6, 6),
 (7, 3),
 (8, 3),
 (9, 3),
 (10, 4),
 (11, 4),
 (12, 4),
-(13, 5);
+(13, 5),
+(14, 6);
 
 -- --------------------------------------------------------
 
@@ -220,11 +225,14 @@ CREATE TABLE `plataforma_juego` (
 
 INSERT INTO `plataforma_juego` (`id_plataforma`, `id_biblioteca_juego`) VALUES
 (1, 1),
+(1, 6),
 (2, 1),
 (2, 3),
+(2, 6),
 (3, 1),
 (3, 3),
 (3, 4),
+(3, 6),
 (6, 2),
 (6, 3),
 (9, 2),
@@ -249,14 +257,10 @@ CREATE TABLE `ranking` (
 --
 
 INSERT INTO `ranking` (`id_ranking`, `id`, `puntos`, `dificultad`) VALUES
-(1, 1, 25, NULL),
+(1, 1, 30, NULL),
 (2, 15, 25, NULL),
 (3, 2, 23, NULL),
-(4, 3, 17, NULL),
-(5, 16, 6, NULL),
-(6, 14, 25, NULL),
-(7, 17, 11, NULL),
-(8, 18, 19, NULL),
+(6, 14, 30, NULL),
 (9, 19, 18, NULL);
 
 -- --------------------------------------------------------
@@ -270,7 +274,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(60) NOT NULL,
   `email` varchar(60) NOT NULL,
   `clave` varchar(60) NOT NULL,
-  `admin` tinyint(1) NOT NULL DEFAULT 0
+  `admin` char(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -278,15 +282,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `email`, `clave`, `admin`) VALUES
-(1, 'manu', 'manu@gmail.com', '1234', 1),
-(2, 'ruben', 'ruben@gmail.com', '1234', 0),
-(3, 'laura', 'laura@gmail.com', '1234', 0),
-(14, 'fer', 'fer@gmail.com', '1234', 0),
-(15, 'jose', 'jose@gmail.com', '1234', 0),
-(16, 'pablo', 'pablo@gmail.com', '1234', 0),
-(17, 'dev', 'anivia@gmail.com', '1234', 0),
-(18, 'jesus', 'dsada', '1234', 0),
-(19, 'Franchesco Bergolini', 'rayomakuin@gmail.com', 'fiau', 0);
+(1, 'manu', 'manu@gmail.com', '1234', '1'),
+(2, 'rubenn', 'ruben@gmail.com', '1234', '0'),
+(14, 'fer', 'fer@gmail.com', '1234', '0'),
+(15, 'jose', 'jose@gmail.com', '1234', '0'),
+(19, 'Franchesco Bergol', 'rayomak@gmail.com', 'fia', '1');
 
 --
 -- Índices para tablas volcadas
@@ -360,13 +360,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `biblioteca_juego`
 --
 ALTER TABLE `biblioteca_juego`
-  MODIFY `id_biblioteca_juego` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_biblioteca_juego` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_genero` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen`
@@ -396,7 +396,7 @@ ALTER TABLE `ranking`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas

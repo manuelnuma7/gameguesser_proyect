@@ -25,6 +25,4 @@ export class UsuarioComponent {
     location.reload();
     // Redireccionar a la página de inicio de sesión u otra página adecuada después de cerrar sesión
   }
-
-
 }

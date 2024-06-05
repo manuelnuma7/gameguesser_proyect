@@ -1,165 +1,231 @@
 <div class="fixed-header">
-<div class="toolbar" style="width: 100%; display: flex; justify-content: space-between;">
-  <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('usuarios')">Mostrar Usuarios</button>
-  <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('juegos')">Mostrar Juegos</button>
-  <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('modificarUsuario')">Modificar Usuario</button>
-  <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('modificarJuego')">Modificar Juego</button>
-  <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('agregarJuego')">Agregar Juego</button>
-  <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('eliminarJuego')">Eliminar Juego</button>
-  <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('eliminarUsuario')">Eliminar Usuario</button>
-</div>
-<div class="table-responsive">
-  <table class="table table-striped table-juegos" *ngIf="activeSection === 'usuarios'">
-    <thead class="thead-dark">
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Clave</th>
-        <th>Admin</th>
-      </tr>
-    </thead>
-  </table>
-  <table class="table table-striped table-juegos" *ngIf="activeSection === 'juegos'">
-    <thead class="thead-dark">
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Fecha</th>
-        <th>Nota</th>
-        <th>Companion</th>
-        <th>Nivel</th>
-        <th>Géneros</th>
-        <th>Plataformas</th>
-        <th>Música</th>
-        <th>Imágenes</th>
-      </tr>
-    </thead>
-  </table>
-</div>
+  <div class="toolbar" style="width: 100%; display: flex; justify-content: space-between;">
+    <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('usuarios')">Mostrar Usuarios</button>
+    <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('juegos')">Mostrar Juegos</button>
+    <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('modificarUsuario')">Modificar Usuario</button>
+    <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('modificarJuego')">Modificar Juego</button>
+    <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('agregarJuego')">Agregar Juego</button>
+    <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('eliminarJuego')">Eliminar Juego</button>
+    <button mat-raised-button color="primary" class="admin-button" (click)="setActiveSection('eliminarUsuario')">Eliminar Usuario</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped table-juegos" *ngIf="activeSection === 'usuarios'">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Clave</th>
+          <th>Admin</th>
+        </tr>
+      </thead>
+    </table>
+    <table class="table table-striped table-juegos" *ngIf="activeSection === 'juegos'">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Fecha</th>
+          <th>Nota</th>
+          <th>Companion</th>
+          <th>Nivel</th>
+          <th>Géneros</th>
+          <th>Plataformas</th>
+          <th>Música</th>
+          <th>Imágenes</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 </div>
 <div class="content">
-<div *ngIf="activeSection === 'usuarios'" class="table-responsive">
-  <table class="table table-striped table-juegos">
-    <tbody>
-      <tr *ngFor="let usuario of usuarios">
-        <td>{{ usuario.id }}</td>
-        <td>{{ usuario.nombre }}</td>
-        <td>{{ usuario.email }}</td>
-        <td>{{ usuario.clave }}</td>
-        <td>{{ usuario.admin }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div *ngIf="activeSection === 'juegos'" class="table-responsive">
-  <table class="table table-striped table-juegos">
-    <tbody>
-      <tr *ngFor="let juego of juegos">
-        <td>{{ juego.id }}</td>
-        <td>{{ juego.nombre }}</td>
-        <td>{{ juego.fecha  }}</td>
-        <td>{{ juego.nota }}</td>
-        <td>{{ juego.companion }}</td>
-        <td>{{ juego.nivel }}</td>
-        <td>{{ juego.generos.join(', ') }}</td>
-        <td>{{ juego.plataformas.join(', ') }}</td>
-        <td>{{ juego.musica.join(', ') }}</td>
-        <td>
-          <div *ngFor="let imagen of juego.imagenes">
-            <img *ngIf="imagen" [src]="imagen" alt="Imagen de juego">
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div *ngIf="activeSection === 'usuarios'" class="table-responsive">
+    <table class="table table-striped table-juegos">
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.clave }}</td>
+          <td>{{ usuario.admin }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="activeSection === 'juegos'" class="table-responsive">
+    <table class="table table-striped table-juegos">
+      <tbody>
+        <tr *ngFor="let juego of juegos">
+          <td>{{ juego.id }}</td>
+          <td>{{ juego.nombre }}</td>
+          <td>{{ juego.fecha }}</td>
+          <td>{{ juego.nota }}</td>
+          <td>{{ juego.companion }}</td>
+          <td>{{ juego.nivel }}</td>
+          <td>{{ juego.generos.join(', ') }}</td>
+          <td>{{ juego.plataformas.join(', ') }}</td>
+          <td>{{ juego.musica.join(', ') }}</td>
+          <td>
+            <div *ngFor="let imagen of juego.imagenes">
+              <img *ngIf="imagen" [src]="imagen" alt="Imagen de juego" class="game-image">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div *ngIf="activeSection === 'modificarUsuario'">
-  <div>
+  <div *ngIf="activeSection === 'modificarUsuario'" class="form-container">
     <form [formGroup]="usuarioForm" (ngSubmit)="modificarUsuario()">
       <input formControlName="id" placeholder="ID del Usuario" (change)="cargarUsuario()">
       <input formControlName="nombre" placeholder="Nombre del Usuario">
       <input formControlName="email" placeholder="Email del Usuario">
       <input formControlName="clave" placeholder="Clave del Usuario">
       <input formControlName="admin" placeholder="Admin">
-      <button type="submit">Modificar Usuario</button>
+      <button type="submit" class="btn btn-primary">Modificar Usuario</button>
     </form>
   </div>
-</div>
 
-<div *ngIf="activeSection === 'modificarJuego'">
-  <!-- Formulario para modificar un juego -->
-</div>
-
-<div *ngIf="activeSection === 'agregarJuego'">
-  <form class="form-container" [formGroup]="juegoForm" (ngSubmit)="onSubmit()">
-    <input formControlName="nombre" placeholder="Nombre del juego" type="text">
-    <input formControlName="fecha" placeholder="Año del juego" type="number">
-    <input formControlName="nota" placeholder="Nota del juego" type="number">
-    <input formControlName="companion" placeholder="Companion" type="text">
-    <select formControlName="nivel">
-      <option value="1">Fácil</option>
-      <option value="2">Normal</option>
-      <option value="3">Difícil</option>
-    </select>
-  
-     <!-- Géneros -->
-  <div formArrayName="generos">
-    <button type="button" (click)="agregarGenero()" [disabled]="generos.length >= 3">Agregar Género</button>
-    <div *ngFor="let genero of generos.controls; let i = index">
-      <select [formControlName]="i">
-        <option *ngFor="let g of generosDisponibles" [value]="g">{{ g }}</option>
+  <div *ngIf="activeSection === 'modificarJuego'" class="form-container">
+    <form [formGroup]="juegoForm" (ngSubmit)="modificarJuego()">
+      <input formControlName="id" placeholder="ID del Juego" type="number" (change)="cargarJuego()">
+      <input formControlName="nombre" placeholder="Nombre del Juego" type="text">
+      <input formControlName="fecha" placeholder="Año del Juego" type="number">
+      <input formControlName="nota" placeholder="Nota del Juego" type="number">
+      <input formControlName="companion" placeholder="Companion" type="text">
+      <select formControlName="nivel" class="form-control">
+        <option value="1">Fácil</option>
+        <option value="2">Normal</option>
+        <option value="3">Difícil</option>
       </select>
-    </div>
+      
+      <div formArrayName="generos">
+        <button type="button" class="btn btn-secondary" (click)="agregarGenero()">Agregar Género</button>
+        <div *ngFor="let genero of generos.controls; let i = index">
+          <select [formControlName]="i" class="form-control">
+            <option *ngFor="let g of generosDisponibles" [value]="g">{{ g }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div formArrayName="plataformas">
+        <button type="button" class="btn btn-secondary" (click)="agregarPlataforma()">Agregar Plataforma</button>
+        <div *ngFor="let plataforma of plataformas.controls; let i = index">
+          <select [formControlName]="i" class="form-control">
+            <option *ngFor="let p of plataformasDisponibles" [value]="p">{{ p }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div formArrayName="imagenes">
+        <button type="button" class="btn btn-secondary" (click)="agregarImagen()">Agregar Imagen</button>
+        <div *ngFor="let imagen of imagenes.controls; let i = index">
+          <input [formControlName]="i" placeholder="Nombre de la Imagen" class="form-control">
+        </div>
+      </div>
+
+      <div formArrayName="musica">
+        <button type="button" class="btn btn-secondary" (click)="agregarMusica()">Agregar Música</button>
+        <div *ngFor="let musica of musica.controls; let i = index">
+          <input [formControlName]="i" placeholder="Nombre de la Música" class="form-control">
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Modificar Juego</button>
+    </form>
   </div>
 
-  <!-- Plataformas -->
-  <div formArrayName="plataformas">
-    <button type="button" (click)="agregarPlataforma()" [disabled]="plataformas.length >= 3">Agregar Plataforma</button>
-    <div *ngFor="let plataforma of plataformas.controls; let i = index">
-      <select [formControlName]="i">
-        <option *ngFor="let p of plataformasDisponibles" [value]="p">{{ p }}</option>
+  <div *ngIf="activeSection === 'agregarJuego'" class="form-container">
+    <form [formGroup]="juegoForm" (ngSubmit)="onSubmit()">
+      <input formControlName="nombre" placeholder="Nombre del juego" type="text">
+      <input formControlName="fecha" placeholder="Año del juego" type="number">
+      <input formControlName="nota" placeholder="Nota del juego" type="number">
+      <input formControlName="companion" placeholder="Companion" type="text">
+      <select formControlName="nivel" class="form-control">
+        <option value="1">Fácil</option>
+        <option value="2">Normal</option>
+        <option value="3">Difícil</option>
       </select>
-    </div>
+    
+      <div formArrayName="generos">
+        <button type="button" class="btn btn-secondary" (click)="agregarGenero()" [disabled]="generos.length >= 3">Agregar Género</button>
+        <div *ngFor="let genero of generos.controls; let i = index">
+          <select [formControlName]="i" class="form-control">
+            <option *ngFor="let g of generosDisponibles" [value]="g">{{ g }}</option>
+          </select>
+        </div>
+      </div>
+  
+      <div formArrayName="plataformas">
+        <button type="button" class="btn btn-secondary" (click)="agregarPlataforma()" [disabled]="plataformas.length >= 3">Agregar Plataforma</button>
+        <div *ngFor="let plataforma of plataformas.controls; let i = index">
+          <select [formControlName]="i" class="form-control">
+            <option *ngFor="let p of plataformasDisponibles" [value]="p">{{ p }}</option>
+          </select>
+        </div>
+      </div>
+      
+      <div formArrayName="imagenes">
+        <button type="button" class="btn btn-secondary" (click)="agregarImagen()">Agregar Imagen</button>
+        <div *ngFor="let imagen of imagenes.controls; let i = index">
+          <input [formControlName]="i" placeholder="Nombre de la Imagen" class="form-control">
+        </div>
+      </div>
+    
+      <div formArrayName="musica">
+        <button type="button" class="btn btn-secondary" (click)="agregarMusica()">Agregar Música</button>
+        <div *ngFor="let musica of musica.controls; let i = index">
+          <input [formControlName]="i" placeholder="Nombre de la Música" class="form-control">
+        </div>
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Agregar Juego</button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">Limpiar Formulario</button>
+    </form>
   </div>
-  
-    <div formArrayName="imagenes">
-      <button type="button" (click)="agregarImagen()">Agregar Imagen</button>
-      <div *ngFor="let imagen of imagenes.controls; let i = index">
-        <input [formControlName]="i" placeholder="URL de imagen">
-      </div>
-    </div>
-  
-    <div formArrayName="musica">
-      <button type="button" (click)="agregarMusica()">Agregar Música</button>
-      <div *ngFor="let musica of musica.controls; let i = index">
-        <input [formControlName]="i" placeholder="URL de música">
-      </div>
-    </div>
-  
-    <button type="submit">Agregar Juego</button>
-    <button type="button" (click)="resetForm()">Limpiar Formulario</button>
-  </form>
-</div>
 
-<div *ngIf="activeSection === 'eliminarJuego'">
-  <!-- Formulario para eliminar un juego -->
-</div>
+  <div *ngIf="activeSection === 'eliminarJuego'" class="form-container">
+    <form [formGroup]="juegoForm" (ngSubmit)="eliminarJuego()">
+      <input formControlName="id" placeholder="ID del Juego" (change)="cargarJuego()">
+      <input formControlName="nombre" placeholder="Nombre del Juego" readonly>
+      <input formControlName="fecha" placeholder="Fecha del Juego" readonly>
+      <input formControlName="nota" placeholder="Nota del Juego" readonly>
+      <input formControlName="companion" placeholder="Companion" readonly>
+      <input formControlName="nivel" placeholder="Nivel" readonly>
+      <div formArrayName="generos">
+        <div *ngFor="let genero of generos.controls; let i = index">
+          <input [formControlName]="i" placeholder="Género" readonly>
+        </div>
+      </div>
+      <div formArrayName="plataformas">
+        <div *ngFor="let plataforma of plataformas.controls; let i = index">
+          <input [formControlName]="i" placeholder="Plataforma" readonly>
+        </div>
+      </div>
+      <div formArrayName="imagenes">
+        <div *ngFor="let imagen of imagenes.controls; let i = index">
+          <input [formControlName]="i" placeholder="Imagen" readonly>
+        </div>
+      </div>
+      <div formArrayName="musica">
+        <div *ngFor="let musica of musica.controls; let i = index">
+          <input [formControlName]="i" placeholder="Música" readonly>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Eliminar Juego</button>
+    </form>
+  </div>
 
-<div *ngIf="activeSection === 'eliminarUsuario'">
-  <div>
+  <div *ngIf="activeSection === 'eliminarUsuario'" class="form-container">
     <form [formGroup]="usuarioForm" (ngSubmit)="eliminarUsuario()">
       <input formControlName="id" placeholder="ID del Usuario" (change)="cargarUsuario()">
       <input formControlName="nombre" placeholder="Nombre del Usuario" readonly>
       <input formControlName="email" placeholder="Email del Usuario" readonly>
       <input formControlName="clave" placeholder="Clave del Usuario" readonly>
       <input formControlName="admin" placeholder="Admin" readonly>
-      <button type="submit">Eliminar Usuario</button>
+      <button type="submit" class="btn btn-primary">Eliminar Usuario</button>
     </form>
   </div>
+
+  <a href="principal.html" class="back-to-main-btn">Volver a Principal</a>
 </div>
-
-  
-
-<a href="principal.html" class="back-to-main-btn">Volver a Principal</a>

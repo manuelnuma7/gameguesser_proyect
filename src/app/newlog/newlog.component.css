@@ -1,0 +1,102 @@
+/* Form container styling */
+.form-group {
+    margin-top: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    text-align: right;
+}
+
+input[type="text"], input[type="password"] {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.5rem;
+}
+
+button {
+    margin-top: 20px;
+}
+
+.text-danger {
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+.text-success {
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+.text-info {
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+/* Button styles */
+.btn-primary {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Message styles */
+.message-container {
+    margin-top: 20px;
+}
+
+.message {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.message-success {
+    color: green;
+}
+
+.message-error {
+    color: red;
+}
+
+/* Password toggle */
+.password-toggle-container {
+    position: relative;
+}
+
+.password-toggle-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: #007bff;
+}
+
+.password-toggle-button:focus {
+    outline: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .form-group {
+        margin-top: 15px;
+    }
+
+    .form-label {
+        text-align: left;
+    }
+
+    input[type="text"], input[type="password"] {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}

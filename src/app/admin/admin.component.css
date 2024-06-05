@@ -1,79 +1,97 @@
 /* botones */
 .admin-button {
-    margin: 5px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .admin-button:hover {
-    background-color: #0056b3;  /* Oscurece el botón al pasar el ratón por encima */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
-  }
-  
-  .admin-button:active {
-    background-color: #004085;  /* Hace el botón aún más oscuro cuando se hace clic */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transform: translateY(1px);
-  }
+  margin: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
 
-  /* tabla de juegos */
+.admin-button:hover {
+  background-color: #0056b3;  /* Oscurece el botón al pasar el ratón por encima */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
 
-  /* Estilos para la tabla */
+.admin-button:active {
+  background-color: #004085;  /* Hace el botón aún más oscuro cuando se hace clic */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+/* tabla de juegos */
+/* Estilos para la tabla */
 .table-juegos th, .table-juegos td {
-    vertical-align: middle; /* Alinea el contenido de las celdas verticalmente al centro */
-  }
-  
-  
-  
-  .table-juegos img {
-    width: 100%; /* Asegura que las imágenes ocupen todo el ancho de la celda */
-    height: auto; /* Mantiene la proporción de las imágenes */
-    max-height: 75px; /* Limita la altura máxima de las imágenes */
-  }
-  
-  .table-juegos thead th {
-    position: sticky;
-    top: 0;
-    background-color: #f8f9fa; /* Color de fondo para asegurar que el texto no sea transparente */
-    z-index: 1020; /* Asegura que el encabezado esté por encima del contenido de la tabla */
-  }
+  vertical-align: middle; /* Alinea el contenido de las celdas verticalmente al centro */
+}
 
+.table-juegos img {
+  width: 100%; /* Asegura que las imágenes ocupen todo el ancho de la celda */
+  height: auto; /* Mantiene la proporción de las imágenes */
+  max-height: 75px; /* Limita la altura máxima de las imágenes */
+}
 
+.table-juegos thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa; /* Color de fondo para asegurar que el texto no sea transparente */
+  z-index: 1020; /* Asegura que el encabezado esté por encima del contenido de la tabla */
+}
 
-  .fixed-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1030; /* Asegurar que está por encima de otros elementos */
-    background-color: white; /* Fondo para mejorar legibilidad */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra para efecto de profundidad */
-  }
-  
-  .content {
-    padding-top: 180px; /* Ajusta según la altura del .fixed-header */
-  }
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030; /* Asegurar que está por encima de otros elementos */
+  background-color: white; /* Fondo para mejorar legibilidad */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra para efecto de profundidad */
+}
 
+.content {
+  padding-top: 180px; /* Ajusta según la altura del .fixed-header */
+  padding-bottom: 70px; /* Añadir espacio inferior para el botón */
+}
 
-  .back-to-main-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: rgba(0, 123, 255, 0.5); /* Color azul con transparencia */
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none; /* Eliminar subrayado de enlaces */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s; /* Animación suave del fondo */
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra ligera para más visibilidad */
-  }
-  
-  .back-to-main-btn:hover {
-    background-color: rgba(0, 123, 255, 0.8); /* Menos transparencia al pasar el ratón */
-  }
+.back-to-main-btn {
+  position: fixed;
+  bottom: 80px; /* Aumentar el espacio inferior para evitar el pie de página */
+  right: 20px;
+  background-color: rgba(0, 123, 255, 0.5); /* Color azul con transparencia */
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none; /* Eliminar subrayado de enlaces */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s; /* Animación suave del fondo */
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra ligera para más visibilidad */
+}
 
-  .form-container {
-    margin-bottom: 50px; /* Ajusta el valor según lo que necesites */
-  }
+.back-to-main-btn:hover {
+  background-color: rgba(0, 123, 255, 0.8); /* Menos transparencia al pasar el ratón */
+}
+
+.form-container {
+  margin-bottom: 50px; /*  */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container input, .form-container select, .form-container button {
+  margin-bottom: 15px;
+}
+
+.game-image {
+  width: 100%;
+  height: auto;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  padding: 5px;
+}

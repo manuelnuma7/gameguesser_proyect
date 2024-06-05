@@ -1,9 +1,100 @@
-
-body,footer{
-    background-color: grey;
-}
-*{
-    margin:0;
-    padding:0;
+/* General Styles */
+body, footer {
+    background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Navbar */
+  .navbar-brand {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-brand .logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .nav-link {
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #007bff;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+  }
+  
+  footer .row {
+    margin: 0;
+  }
+  
+  /* Main Content */
+  .container-fluid {
+    padding: 20px;
+  }
+  
+  /* Animations and Transitions */
+  button, .btn, .nav-link {
+    transition: all 0.3s ease;
+  }
+  
+  button:hover, .btn:hover, .nav-link:hover {
+    transform: translateY(-2px);
+  }
+  
+  button:active, .btn:active, .nav-link:active {
+    transform: translateY(1px);
+  }
+  
+  /* Forms and Inputs */
+  input, textarea, select {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Additional Styles */
+  .mt-5 {
+    margin-top: 5rem !important;
   }
   

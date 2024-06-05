@@ -1,84 +1,57 @@
-<div class="form-group my-3">
-    <form (ngSubmit)="entradausuario()" [formGroup]="newusuarioForm" class="row">
-      <label for="nombre" class="form-label col text-end">Usuario</label>
-      <input
-        type="text"
-        placeholder="nombre"
-        name="nombre"
-        formControlName="nombre"
-        class="col"
-      />
-  
-      <label for="email" class="form-label col text-end">email</label>
-      <input
-        type="text"
-        placeholder="email"
-        name="email"
-        formControlName="email"
-        class="col"
-      />
-      <label for="clave" class="form-label col text-end">clave</label>
-      <input
-        type="text"
-        placeholder="clave"
-        name="clave"
-        formControlName="clave"
-        class="col"
-      />
-      <div class="col text-center">
-        <button type="submit" class="btn btn-primary">Crear</button>
+<div class="container my-5">
+  <h1 class="text-center">Crear Usuario</h1>
+  <form (ngSubmit)="entradausuario()" [formGroup]="newusuarioForm" class="row g-3 justify-content-center">
+    <div class="col-md-8">
+      <label for="nombre" class="form-label">Usuario</label>
+      <input type="text" placeholder="Nombre" name="nombre" formControlName="nombre" class="form-control" />
+      <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)" class="text-danger">
+        <small *ngIf="nombre?.errors?.['required']">Nombre es requerido</small>
       </div>
-    </form>
-    <div class="row">
-      <div class="col">
-        <div *ngIf="nombre?.invalid && nombre?.dirty">
-          <!-- <small
-            class="form-text text-danger"
-            *ngIf="nombre?.errors?.['minlength'] || nombre?.errors?.['maxlength']"
-            >Usuario corto o largo</small
-          > -->
-          <small
-            class="form-text text-danger"
-            *ngIf="nombre?.errors?.['required']"
-          >
-            *
-          </small>
-        </div>
-      </div>
-      <div class="col">
-        <div *ngIf="email?.invalid && email?.dirty">
-          <!-- <small
-            class="form-text text-danger"
-            *ngIf="email?.errors?.['minlength']"
-            >email corto</small
-          > -->
-          <small
-            class="form-text text-danger"
-            *ngIf="email?.errors?.['required']"
-          >
-            *
-          </small>
-        </div>
-      </div>
-      <!-- <div class="col">
-        <div *ngIf="clave?.invalid && clave?.dirty">
-          <small class="form-text text-danger" *ngIf="clave?.errors?.['pattern']">
-            La clave debe tener al menos una letra mayúscula, un número y un caracter especial (!@#$%^&*) y una longitud mínima de 7 caracteres y máxima de 40 caracteres.
-          </small>
-        </div>
-      </div> -->
-        
-    
-    
-  </div>
-  </div>
-  <div class="row">
-    <div *ngIf="message" [ngClass]="clasec">{{ message }}</div>
-    <div *ngIf="resp?.error?.msg" class="text-danger">{{ resp.error.msg }}</div>
-    <div *ngIf="resp?.error?.sqlstate == '00000'" class="text-success">
-      Datos insertados correctamente
-      
     </div>
+
+    <div class="col-md-8">
+      <label for="email" class="form-label">Email</label>
+      <input type="text" placeholder="Email" name="email" formControlName="email" class="form-control" />
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+        <small *ngIf="email?.errors?.['required']">Email es requerido</small>
+        <small *ngIf="email?.errors?.['email']">Email no es válido</small>
+      </div>
+    </div>
+
+    <div class="col-md-8 password-toggle-container">
+      <label for="clave" class="form-label">Clave</label>
+      <input [type]="showPassword ? 'text' : 'password'" placeholder="Clave" name="clave" formControlName="clave" class="form-control" />
+      <button type="button" class="password-toggle-button" (click)="togglePasswordVisibility()">Mostrar</button>
+      <div *ngIf="clave?.invalid && (clave?.dirty || clave?.touched)" class="text-danger">
+        <small *ngIf="clave?.errors?.['required']">Clave es requerida</small>
+        <small *ngIf="clave?.errors?.['pattern']">La clave debe tener al menos una letra mayúscula, un número, un carácter especial (incluyendo .) y una longitud mínima de 8 caracteres</small>
+      </div>
+    </div>
+
+    <div class="col-md-8 password-toggle-container">
+      <label for="confirmarClave" class="form-label">Confirmar Clave</label>
+      <input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Confirmar Clave" name="confirmarClave" formControlName="confirmarClave" class="form-control" />
+      <button type="button" class="password-toggle-button" (click)="toggleConfirmPasswordVisibility()">Mostrar</button>
+      <div *ngIf="confirmarClave?.invalid && (confirmarClave?.dirty || confirmarClave?.touched)" class="text-danger">
+        <small *ngIf="confirmarClave?.errors?.['required']">Confirmación de clave es requerida</small>
+        <small *ngIf="confirmarClave?.errors?.['noMatch']">Las claves no coinciden</small>
+      </div>
+    </div>
+
+    <div class="col-md-8 text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="newusuarioForm.invalid">Crear</button>
+    </div>
+  </form>
+
+  <div class="message-container text-center">
+    <div *ngIf="message" [ngClass]="{'message-success': clasec === 'text-success', 'message-error': clasec === 'text-danger'}">
+      {{ message }}
+    </div>
+    <div *ngIf="resp?.error?.msg" class="text-danger">{{ resp.error.msg }}</div>
+    <div *ngIf="resp?.error?.sqlstate == '00000'" class="text-success">Datos insertados correctamente</div>
   </div>
-  <button type="button" class="btn btn-primary" routerLink="/principal">Volver</button>
-  <!-- <p *ngFor="let u of (actuales$ | async)">{{ u | json}}</p> -->
+
+  <div class="text-center mt-4">
+    <button type="button" class="btn btn-primary" routerLink="/principal">Volver</button>
+  </div>
+</div>

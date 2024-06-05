@@ -46,13 +46,17 @@ export class ServicioService {
     return this.http.post<Juego>(`${this.url}juego/insertarJuego.php`, juego);
   }
 
-  // modificarJuego(juego: Juego): Observable<any> {
-  //   return this.http.put(`${this.url}juego/modificarJuego.php`, juego);
-  // }
+  getJuegoById(id: number): Observable<Juego> {
+    return this.http.get<Juego>(`${this.url}juego/getJuegoById.php?id=${id}`);
+  }
 
-  // eliminarJuego(id: number): Observable<any> {
-  //   return this.http.delete(`${this.url}juego/eliminarJuego.php?id=${id}`);
-  // }
+  modificarJuego(juego: Juego): Observable<any> {
+    return this.http.post(`${this.url}juego/modificarJuego.php`, juego);
+  }
+
+  eliminarJuego(id: number): Observable<any> {
+    return this.http.delete(`${this.url}juego/eliminarJuego.php?id=${id}`);
+  }
 
 
   getUsuarioById(id: number): Observable<Usuario> {

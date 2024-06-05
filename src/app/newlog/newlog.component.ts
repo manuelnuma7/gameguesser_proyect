@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 import { Usuario } from '../model/usuario';
 import { ServicioService } from '../servicio.service';
@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./newlog.component.css']
 })
 export class NewlogComponent {
-
   newusuario: Usuario = {
     id: 0,
     nombre: '',
@@ -24,7 +23,9 @@ export class NewlogComponent {
   public clasec: string = '';
   public clases: string = 'text-info';
   resp: any;
-  actuales$!: Observable<Usuario[]>;;
+  actuales$!: Observable<Usuario[]>;
+  showPassword = false;
+  showConfirmPassword = false;
 
   constructor(
     private servicioService: ServicioService,
@@ -32,10 +33,13 @@ export class NewlogComponent {
   ) {
     this.newusuarioForm = this.fb.group({
       nombre: ['', [Validators.required]],
-      email: ['', [Validators.required ]],
-      clave: ['', [Validators.required ]],
-
-    });
+      email: ['', [Validators.required, Validators.email]],
+      clave: ['', [
+        Validators.required,
+        Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*.])[A-Za-z\d!@#$%^&*.]{8,}$/)
+      ]],
+      confirmarClave: ['', [Validators.required]]
+    }, { validators: this.passwordMatchValidator });
   }
 
   entradausuario() {
@@ -45,16 +49,33 @@ export class NewlogComponent {
     } else {
       this.clasec = 'text-success';
       this.newusuario = this.newusuarioForm.value;
-      // this.message = `Entrada correcta: ${this.newusuario.nombre} ${this.newusuario.email} ${this.newusuario.clave}`;
       console.log('Entrada correcta', this.newusuario);
       this.servicioService
         .postDato(this.newusuario)
         .subscribe({
           next: resp => this.resp = resp,
           error: err => console.log(err),
-          complete: () => this.actuales$=this.servicioService.getDatosUsuario()
+          complete: () => this.actuales$ = this.servicioService.getDatosUsuario()
         });
     }
+  }
+
+  passwordMatchValidator(group: AbstractControl): { [key: string]: boolean } | null {
+    const password = group.get('clave');
+    const confirmPassword = group.get('confirmarClave');
+    if (password?.value !== confirmPassword?.value) {
+      confirmPassword?.setErrors({ noMatch: true });
+      return { noMatch: true };
+    }
+    return null;
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 
   get nombre() {
@@ -64,8 +85,12 @@ export class NewlogComponent {
   get email() {
     return this.newusuarioForm.get('email');
   }
+
   get clave() {
     return this.newusuarioForm.get('clave');
   }
 
+  get confirmarClave() {
+    return this.newusuarioForm.get('confirmarClave');
+  }
 }

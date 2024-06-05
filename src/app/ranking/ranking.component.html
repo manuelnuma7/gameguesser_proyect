@@ -1,26 +1,31 @@
-<div>
-    <h1 class="text-center">RANKING</h1>
-    <table class="table table-success table-striped table-hover">
-      <thead>
+<div class="container">
+  <h1 class="text-center">RANKING</h1>
+  <table class="table table-success table-striped table-hover">
+    <thead>
+      <tr>
         <th>Nombre</th>
         <th>Puntos</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let uno of datos">
-          <td>{{ uno.nombre }}</td>
-          <td>{{ uno.puntos }}</td>
-        </tr>
-      </tbody>
-    </table>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let uno of datos">
+        <td>{{ uno.nombre }}</td>
+        <td>{{ uno.puntos }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center">
     <button class="btn btn-primary" (click)="toggleGrafica()">Mostrar gráfica de puntos</button>
-    <div *ngIf="mostrarGrafica" class="grafica-contenedor">
-      <div id="grafica"></div>
-      <button class="btn btn-secondary" (click)="toggleGrafica()">Cerrar gráfica</button>
-    </div>
     <button class="btn btn-primary btn-fixed-bottom-center" (click)="guardarRanking()">Guardar Ranking</button>
-  </div>
-  <div>
     <button class="btn btn-primary" type="button" (click)="reiniciarPagina()">Actualizar Ranking</button>
   </div>
   
-  
+  <div *ngIf="mostrarGrafica" class="grafica-alerta">
+    <div class="grafica-contenido">
+      <button class="btn-cerrar" (click)="toggleGrafica()">X</button>
+      <div class="grafica-contenedor">
+        <div id="grafica"></div>
+      </div>
+    </div>
+  </div>
+</div>
